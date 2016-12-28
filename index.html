@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="./js/jquery.js">
+    </script>
+    <script type="text/javascript" src="./js/highcharts.js"></script>
+    <script type="text/javascript" src="highcharts/highcharts-more.js"></script>
+    <script type="text/javascript" src="./js/exporting.js"></script>
+    <script type="text/javascript" src="./js/grid-light.js"></script>
+</head>
+<style type="text/css">
+tspan {
+    color: #ccc;
+}
+</style>
+
+<body>
+    <div id="container" style="color:#ccc;max-width: 500px; max-height: 900px">
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        Highcharts.setOptions({
+            lang: {
+                contextButtonTitle: "图表导出菜单",
+                decimalPoint: ".",
+                downloadJPEG: "下载JPEG图片(ie 暂时不支持)",
+                downloadPDF: "下载PDF文件(ie 暂时不支持)",
+                downloadPNG: "下载PNG文件(ie 暂时不支持)",
+                downloadSVG: "下载SVG文件(ie 暂时不支持)",
+                /*downloadJPEG: "",
+                downloadPDF: "",
+                downloadPNG: "",
+                downloadSVG: "",*/
+                drillUpText: "返回 {series.name}",
+                loading: "加载中...",
+                months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                noData: "没有数据",
+                numericSymbols: ["千", "兆", "G", "T", "P", "E"],
+                printChart: "打印当前图表",
+                resetZoom: "恢复缩放",
+                resetZoomTitle: "恢复图表",
+                shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                thousandsSep: ",",
+                weekdays: ["星期一", "星期二", "星期三", "星期三", "星期四", "星期五", "星期六", "星期天"]
+            }
+        });
+        $('#container').highcharts({
+            chart: {
+                // 设置图表的类型
+                type: 'columnrange',
+                // 是否调换 x y 轴
+                inverted: true
+            },
+            // 
+            exporting: {
+                enabled: true
+            },
+            // credits: {
+            //     enabled: false
+            // },
+            // 表格的头部
+            title: {
+                text: '车辆检修计划时间表'
+            },
+            // 表格的介绍
+            subtitle: {
+                text: '记录时间 : 2016.12'
+            },
+            // 底部链接
+            credits: {
+                // text: '查看本年度所有维修计划',
+                // href: 'https://www.baidu.com'
+                enabled: false,
+            },
+            // X轴数据
+            xAxis: {
+                // X轴的数据
+                // 一月<br>计划
+                categories: ['', '', '', '', '',
+                    '', '', '', '', '', '', ''
+                ],
+                // 边框宽度
+                lineWidth: 1,
+                // 边框颜色
+                lineColor: "#1a96ef",
+                // 刻度线的宽度
+                tickWidth: 0,
+                // 轴标签的水平对其方式
+                labels: {
+                    y: 20, //x轴刻度往下移动20px
+                    // X轴的字体，颜色设置
+                    style: {
+                        // color:'red',
+                        color: '#19a0f5', //颜色
+                        fontSize: '14px' //字体
+                    }
+                }
+            },
+            yAxis: {
+                // 设置轴的最小值
+                // min: 0.9,
+                max: 31,
+                // endOnTick: true,
+                // startOnTick:false,
+                // maxPadding: 1,
+                gridLineColor: '#197F07',
+                // 改变网格的颜色
+                alternateGridColor: "#ccc",
+                title: {
+                    text: ' 单位 ( 日 )'
+                },
+                labels: {
+                    y: 20, //x轴刻度往下移动20px
+                    style: {
+                        // color: 'green',
+                        color: '#19a0f5', //颜色
+                        fontSize: '14px' //字体
+                    }
+                }
+            },
+            tooltip: {
+                valueSuffix: "日"
+            },
+            plotOptions: {
+                columnrange: {
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function() {
+                            return this.y;
+                        }
+                    }
+                }
+            },
+            legend: {
+                align: 'right', //水平方向位置
+                verticalAlign: 'top', //垂直方向位置
+                x: 0, //距离x轴的距离
+                y: 40 //距离Y轴的距离
+            },
+            series: [{
+                name: '计划 ( 到站 -- 出站 ) 时间',
+                data: [
+                    [2, 4],
+                    [5, 15],
+                    [3, 9],
+                    [10, 19],
+                    [6, 26],
+                    [9, 25],
+                    [8, 31],
+                    [21, 25],
+                    [18, 10]
+                ]
+            }, {
+                name: '实际 ( 到站 -- 出站 ) 时间',
+                data: [
+                    [6, 4],
+                    [8, 15],
+                    [5, 9],
+                    [4, 19],
+                    [5, 26],
+                    [9, 25],
+                    [2, 31],
+                    [8, 25],
+                    [4, 10]
+                ]
+            }]
+        });
+
+    });
+    </script>
+</body>
+
+</html>
